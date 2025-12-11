@@ -11,7 +11,7 @@ export default async function handler(req) {
     },
     body: JSON.stringify({
       from: "Gift Puzzle <onboarding@resend.dev>",
-      to: email,
+      to: "kapil.designshore@gmail.com",
       subject: "Puzzle Solved!",
       html: `<p>${message}</p>`
     })
