@@ -13,8 +13,10 @@ function checkPuzzle() {
         email: "your-email@example.com",
         message: "Someone solved the puzzle!"
       })
+    }).then(response => {
+      alert("You Should be receiving your gift shortly!");
+      window.location.reload();
     });
-
   } else {
     alert("Wrong answer, try again!");
   }
