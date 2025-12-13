@@ -1,7 +1,8 @@
 function checkPuzzle() {
-  const ans = document.getElementById("answer").value;
-
-  if (ans == "12") {
+  const ans = document.getElementById("ans").value;
+  console.log(ans)
+  // write regexp to check if ans is "sand" case insensitive
+  if (/^sand$/i.test(ans)) {
     alert("Correct!");
 
     // Notify YOU by email
