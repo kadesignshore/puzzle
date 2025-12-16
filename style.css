@@ -176,7 +176,7 @@ body {
   color: #23272a;
   font-size: var(--step-0);
   line-height: 1.34;
-  overflow: hidden;
+  overflow-x: hidden;
   --one: hsl(192deg 40% 43%);
   --two: hsl(268deg 45% 46%);
   --three: hsl(268deg 45% 42%);
