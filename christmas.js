@@ -9,7 +9,7 @@ let explosion = gsap.timeline({ paused: true });
 // create 100 confetti elements
 for (let i = 0; i < 100; i++) {
   let c = document.createElement("div");
-  c.innerHTML = gsap.utils.random(["💚", "✨", "⭐", "💙", "💜"]);
+  c.innerHTML = gsap.utils.random(["🎁", "✨", "⭐", "🎈", "👍"]);
   c.setAttribute("class", "confetti");
   confettis.appendChild(c);
 
