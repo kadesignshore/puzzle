@@ -9,7 +9,7 @@ let explosion = gsap.timeline({ paused: true });
 // create 100 confetti elements
 for (let i = 0; i < 100; i++) {
   let c = document.createElement("div");
-  c.innerHTML = gsap.utils.random(["💚", "✨", "⭐", "💙", "💜"]);
+  c.innerHTML = gsap.utils.random(["🎁", "✨", "⭐", "🎈", "👍"]);
   c.setAttribute("class", "confetti");
   confettis.appendChild(c);
 
@@ -74,7 +74,8 @@ tl.to(".top", {
 let card = document.querySelector(".card");
 let letters = document.querySelector(".letters");
 let isOpen;
-function checkPuzzle() {
+function checkPuzzle(e) {
+  e.preventDefault();
   isOpen = !isOpen;
   const ans = document.getElementById("ans").value;
   const cardState = Flip.getState(
@@ -94,31 +95,7 @@ function checkPuzzle() {
 //   }
   // document.body.classList.toggle("open");
 // explosion.progress(0).pause();
-   Flip.from(cardState, {
-    absolute: '.card',
-    nested: true,
-    duration: 0.75,
-    ease: "sine.inOut",
-    toggleClass: 'flipping',
-    onStart: () => {
-      isOpen ? tl.timeScale(1).play() : tl.timeScale(1.5).reverse()
-      ;
-    },
-    onEnter: (elements) => {
-      gsap.fromTo(
-        elements,
-        { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.5, delay: 0.75, overwrite: true }
-      );
-    },
-    onLeave: (elements) => {
-      gsap.fromTo(
-        elements,
-        { autoAlpha: 1 },
-        { autoAlpha: 0, duration: 0.01, overwrite: true }
-      );
-    }
-  });
+
 
     // todo write a display modal function to view once it is correct so return status ok or good
 
@@ -131,11 +108,53 @@ function checkPuzzle() {
         message: "Someone solved the puzzle!"
       })
     }).then(response => {
+         Flip.from(cardState, {
+          absolute: '.card',
+          nested: true,
+          duration: 0.75,
+          ease: "sine.inOut",
+          toggleClass: 'flipping',
+          onStart: () => {
+            isOpen ? tl.timeScale(1).play() : tl.timeScale(1.5).reverse()
+            ;
+          },
+          onEnter: (elements) => {
+            gsap.fromTo(
+              elements,
+              { autoAlpha: 0 },
+              { autoAlpha: 1, duration: 0.5, delay: 0.75, overwrite: true }
+            );
+          },
+          onLeave: (elements) => {
+            gsap.fromTo(
+              elements,
+              { autoAlpha: 1 },
+              { autoAlpha: 0, duration: 0.01, overwrite: true }
+            );
+          }
 
-      alert("You Should be receiving your gift on 19th December!");
+          //after the animation
+          // window.location.reload();
+          
+
+  }).then(() => {
+      setTimeout(() => {alert("Thank you for playing\nYou Should be receiving your gift within 19th December!");;}, 3000);
+    });
       // window.location.reload();
     });
   } else {
     alert("Wrong answer, try again!");
   }
 }
+
+
+// prevent default form submission behavior
+const form = document.getElementById("form");
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+});
+
+const submitBtn = document.getElementById("submit-btn");
+submitBtn.addEventListener("click", checkPuzzle);
+
+
