@@ -6,6 +6,39 @@ gsap.set(container, { opacity: 1 });
 
 let explosion = gsap.timeline({ paused: true });
 
+// create 100 confetti elements
+for (let i = 0; i < 100; i++) {
+  let c = document.createElement("div");
+  c.innerHTML = gsap.utils.random(["💚", "✨", "⭐", "💙", "💜"]);
+  c.setAttribute("class", "confetti");
+  confettis.appendChild(c);
+
+  explosion.to(
+    c,
+    {
+      keyframes: [
+        {
+          opacity: 1,
+          duration: 0.01
+        },
+        {
+          duration: 3,
+          physics2D: {
+            velocity: "random(200, 650)",
+            angle: "random(250, 290)",
+            gravity: 300
+          }
+        },
+        {
+          opacity: 0,
+          duration: 0.3,
+          delay: -2
+        }
+      ]
+    },
+    Math.random() * 2
+  );
+}
 let tl = gsap.timeline({
   paused: true
 });
