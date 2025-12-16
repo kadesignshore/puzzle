@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift Puzzle</title>
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/abLNErZ.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -76,13 +77,42 @@
    </form>
   </div>
   <div class="spacer"></div>
+  <section class="card">
+  <div class="gift-container">
+   
+    <div class="gift">
+      <div class="plane">
+        <div class="box bottom">
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+        </div>
+        <div class="box top">
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+          <div class="box__side"></div>
+        </div>
+        <div class="confetti-cont"></div>
+      </div>
+    </div>
+
+  </div>
+  
+</section>
 </div>
 
 
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
+    <script src="https://assets.codepen.io/16327/Flip.min.js"></script>
+    <script src="https://assets.codepen.io/16327/Physics2DPlugin3.min.js"></script>
     <script>
         // Initialize Lenis smooth scroll
 const lenis = new Lenis({
@@ -241,7 +271,7 @@ ScrollTrigger.matchMedia({
 });
 
     </script>
-
+    <!-- <script src="christmas.js"></script> -->
     <script src="puzzle.js"></script>
 </body>
 </html>

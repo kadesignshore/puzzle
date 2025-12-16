@@ -6,6 +6,40 @@ gsap.set(container, { opacity: 1 });
 
 let explosion = gsap.timeline({ paused: true });
 
+// create 100 confetti elements
+for (let i = 0; i < 100; i++) {
+  let c = document.createElement("div");
+  c.innerHTML = gsap.utils.random(["💚", "✨", "⭐", "💙", "💜"]);
+  c.setAttribute("class", "confetti");
+  confettis.appendChild(c);
+
+  explosion.to(
+    c,
+    {
+      keyframes: [
+        {
+          opacity: 1,
+          duration: 0.01
+        },
+        {
+          duration: 3,
+          physics2D: {
+            velocity: "random(200, 650)",
+            angle: "random(250, 290)",
+            gravity: 300
+          }
+        },
+        {
+          opacity: 0,
+          duration: 0.3,
+          delay: -2
+        }
+      ]
+    },
+    Math.random() * 2
+  );
+}
+
 let tl = gsap.timeline({
   paused: true
 });
@@ -40,28 +74,33 @@ tl.to(".top", {
 
 let card = document.querySelector(".card");
 let letters = document.querySelector(".letters");
+
 let isOpen;
-function checkPuzzle() {
+
+card.addEventListener("click", () => {
   isOpen = !isOpen;
-  const ans = document.getElementById("ans").value;
+
+  // Get the initial state
   const cardState = Flip.getState(
     ".card, .gift-container, .content--open, .content--closed",
     { props: "borderRadius,padding" }
   );
-  console.log(ans)
-  // write regexp to check if ans is "sand" case insensitive
-  if (/^sand$/i.test(ans)) {
-    // alert("Correct!");
+  
+//   const letterState = Flip.getState(".letter, .for, .gsap", {
+//     props: "opacity"
+//   });
+  
+  document.body.classList.toggle("open");
 
-    //   if (isOpen) {
+
+//   if (isOpen) {
 //     document.body.appendChild(letters);
 //   } else {
 //     container.appendChild(letters);
 //     explosion.progress(0).pause();
 //   }
-  // document.body.classList.toggle("open");
-// explosion.progress(0).pause();
-   Flip.from(cardState, {
+
+  Flip.from(cardState, {
     absolute: '.card',
     nested: true,
     duration: 0.75,
@@ -87,22 +126,27 @@ function checkPuzzle() {
     }
   });
 
-    // todo write a display modal function to view once it is correct so return status ok or good
-
-    // Notify YOU by email
-    fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: "your-email@example.com",
-        message: "Someone solved the puzzle!"
-      })
-    }).then(response => {
-
-      alert("You Should be receiving your gift on 19th December!");
-      // window.location.reload();
-    });
-  } else {
-    alert("Wrong answer, try again!");
-  }
-}
+//   Flip.from(letterState, {
+//     duration: 1,
+//     delay: isOpen ? 1 : 0,
+//     ease: "power1.inOut",
+//     scale: true,
+//     stagger: 0.2,
+//     nested: true,
+//     spin: isOpen ? -1 : 1,
+//     onEnter: (elements) => {
+//       gsap.fromTo(
+//         elements,
+//         { autoAlpha: 0, x: -40 },
+//         {
+//           autoAlpha: 1,
+//           x: 0,
+//           duration: 1,
+//           delay: isOpen ? 2.75 : 0,
+//           overwrite: true,
+//           stagger: 0.2
+//         }
+//       );
+//     }
+//   });
+});
