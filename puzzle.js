@@ -138,7 +138,7 @@ function checkPuzzle(e) {
           
 
   }).then(() => {
-      setTimeout(() => {alert("Thank you for playing\nYou Should be receiving your gift within 19th December!");;}, 3000);
+      setTimeout(() => {alert("Thank you for playing\nYou Should be receiving your gift very soon!");}, 3000);
     });
       // window.location.reload();
     });
